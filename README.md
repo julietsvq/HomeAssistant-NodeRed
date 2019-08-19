@@ -3,7 +3,7 @@ Home Assistant Node Red flows
 
 ## Garden Irrigation
 
-Flow to trigger the garden water system automatically twice a day. Will eventually add humidity + temperature sensor information in order to adjust watering minutes for every time. Also includes notification for manual watering of plants with no automatic irrigation system (plants inside the house). Added notifications in case watering fails to trigger or fails to stop. Will also eventually add humidity + temperature data to notify only when needed. Sensor to use: Xiaomi Mi Flora (bluetooth) [MiFlora component for Home Assistant](https://www.home-assistant.io/components/miflora)
+Flow to trigger the garden water system automatically twice a day. Will eventually add humidity + temperature sensor information in order to adjust watering minutes for every time. Also includes notification for manual watering of plants with no automatic irrigation system (plants inside the house). Will also eventually add humidity + temperature data to notify only when needed. Added notifications in case watering fails to trigger or fails to stop. Sensor to use: Xiaomi Mi Flora (bluetooth) [MiFlora component for Home Assistant](https://www.home-assistant.io/components/miflora)
 
 [Irrigation Flow](https://github.com/julietsvq/HomeAssistant_NodeRed/blob/master/garden%20irrigation%20flow.json)
 ![Irrigation Flow image](https://github.com/julietsvq/HomeAssistant_NodeRed/blob/master/images/garden_irrigation.png)
