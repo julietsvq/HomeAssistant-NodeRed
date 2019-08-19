@@ -1,0 +1,411 @@
+[
+    {
+        "id": "821383f7.262bb",
+        "type": "tab",
+        "label": "Notifications Flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d87b51d4.71e04",
+        "type": "stoptimer",
+        "z": "821383f7.262bb",
+        "duration": "10",
+        "units": "Minute",
+        "payloadtype": "bool",
+        "payloadval": "true",
+        "name": "10 min timer",
+        "x": 330,
+        "y": 320,
+        "wires": [
+            [],
+            [
+                "f05c0a63.eb5828"
+            ]
+        ]
+    },
+    {
+        "id": "f05c0a63.eb5828",
+        "type": "api-current-state",
+        "z": "821383f7.262bb",
+        "name": "Garage door is open state",
+        "server": "8c4c7e11.df75e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "switch.garagedoor",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 530,
+        "y": 320,
+        "wires": [
+            [
+                "41445aa7.edf9c4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "acff1f0a.03a2",
+        "type": "api-current-state",
+        "z": "821383f7.262bb",
+        "name": "Garage door is open state",
+        "server": "8c4c7e11.df75e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "switch.garagedoor",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 530,
+        "y": 240,
+        "wires": [
+            [
+                "bfaf92d3.0a324"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7a34164d.b42698",
+        "type": "stoptimer",
+        "z": "821383f7.262bb",
+        "duration": "5",
+        "units": "Minute",
+        "payloadtype": "bool",
+        "payloadval": "true",
+        "name": "5 min timer",
+        "x": 330,
+        "y": 240,
+        "wires": [
+            [],
+            [
+                "acff1f0a.03a2"
+            ]
+        ]
+    },
+    {
+        "id": "bfaf92d3.0a324",
+        "type": "function",
+        "z": "821383f7.262bb",
+        "name": "Prepare IFTTT push notification",
+        "func": "msg.payload = {};\nmsg.payload.value1 = \"garage open for over 5 minutes!\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 240,
+        "wires": [
+            [
+                "d87b51d4.71e04",
+                "821df74.2837208",
+                "3a96ea31.0a8fc6"
+            ]
+        ]
+    },
+    {
+        "id": "b1e2d6e9.407e48",
+        "type": "server-state-changed",
+        "z": "821383f7.262bb",
+        "name": "Garage door open event",
+        "server": "8c4c7e11.df75e",
+        "version": 1,
+      "entityidfilter": "switch.garagedoor",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "7a34164d.b42698"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "41445aa7.edf9c4",
+        "type": "function",
+        "z": "821383f7.262bb",
+        "name": "Prepare IFTTT push notification",
+        "func": "msg.payload = {};\nmsg.payload.value1 = \"garage open for 15 minutes!\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 320,
+        "wires": [
+            [
+                "821df74.2837208",
+                "3a96ea31.0a8fc6"
+            ]
+        ]
+    },
+    {
+        "id": "aee7d591.24da78",
+        "type": "server-state-changed",
+        "z": "821383f7.262bb",
+        "name": "Juliet location away state",
+        "server": "8c4c7e11.df75e",
+        "version": 1,
+        "entityidfilter": "device_tracker.google_maps_123",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 130,
+        "y": 480,
+        "wires": [
+            [
+                "976c4d49.fbdd5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a0ded3d8.2f81a",
+        "type": "server-state-changed",
+        "z": "821383f7.262bb",
+        "name": "Javi location away state",
+        "server": "8c4c7e11.df75e",
+        "version": 1,
+        "entityidfilter": "device_tracker.google_maps_456",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 120,
+        "y": 540,
+        "wires": [
+            [
+                "ac2b93f5.1e1f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "976c4d49.fbdd5",
+        "type": "api-current-state",
+        "z": "821383f7.262bb",
+        "name": "Javi is away",
+        "server": "8c4c7e11.df75e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": false,
+        "entity_id": "device_tracker.google_maps_123",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 370,
+        "y": 480,
+        "wires": [
+            [
+                "6c0975db.68884c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ac2b93f5.1e1f",
+        "type": "api-current-state",
+        "z": "821383f7.262bb",
+        "name": "Juliet is away",
+        "server": "8c4c7e11.df75e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": false,
+        "entity_id": "device_tracker.google_maps_456",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 370,
+        "y": 540,
+        "wires": [
+            [
+                "8a9ac67e.4f5bf8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4bc92bc2.dc87c4",
+        "type": "function",
+        "z": "821383f7.262bb",
+        "name": "Prepare IFTTT push notification",
+        "func": "msg.payload = {};\nmsg.payload.value1 = \"hay luces encendidas y nadie en casa!\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 830,
+        "y": 480,
+        "wires": [
+            [
+                "e05b7e47.9b4ca"
+            ]
+        ]
+    },
+    {
+        "id": "dca96a40.f5f238",
+        "type": "function",
+        "z": "821383f7.262bb",
+        "name": "Prepare IFTTT push notification",
+        "func": "msg.payload = {};\nmsg.payload.value1 = \"hay luces encendidas y nadie en casa!\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 830,
+        "y": 540,
+        "wires": [
+            [
+                "dd9574a6.aec098"
+            ]
+        ]
+    },
+    {
+        "id": "e05b7e47.9b4ca",
+        "type": "ifttt out",
+        "z": "821383f7.262bb",
+        "eventName": "HassAlertNotification",
+        "key": "2bf9f3ec.d709dc",
+        "x": 1100,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "dd9574a6.aec098",
+        "type": "ifttt out",
+        "z": "821383f7.262bb",
+        "eventName": "HassAlertNotification",
+        "key": "d986d0a9.7dbde",
+        "x": 1100,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "821df74.2837208",
+        "type": "ifttt out",
+        "z": "821383f7.262bb",
+        "eventName": "HassAlertNotification",
+        "key": "2bf9f3ec.d709dc",
+        "x": 1100,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "3a96ea31.0a8fc6",
+        "type": "ifttt out",
+        "z": "821383f7.262bb",
+        "eventName": "HassAlertNotification",
+        "key": "d986d0a9.7dbde",
+        "x": 1100,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "6c0975db.68884c",
+        "type": "api-current-state",
+        "z": "821383f7.262bb",
+        "name": "Lights on",
+        "server": "8c4c7e11.df75e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": false,
+        "entity_id": "group.lights",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 560,
+        "y": 480,
+        "wires": [
+            [
+                "4bc92bc2.dc87c4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8a9ac67e.4f5bf8",
+        "type": "api-current-state",
+        "z": "821383f7.262bb",
+        "name": "Lights on",
+        "server": "8c4c7e11.df75e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "override_topic": false,
+        "entity_id": "group.lights",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 560,
+        "y": 540,
+        "wires": [
+            [
+                "dca96a40.f5f238"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8c4c7e11.df75e",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant"
+    },
+    {
+        "id": "2bf9f3ec.d709dc",
+        "type": "ifttt-key",
+        "z": ""
+    },
+    {
+        "id": "d986d0a9.7dbde",
+        "type": "ifttt-key",
+        "z": ""
+    }
+]

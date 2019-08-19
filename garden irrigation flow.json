@@ -1,0 +1,422 @@
+[
+    {
+        "id": "7b2cdb53.8ac5e4",
+        "type": "tab",
+        "label": "Garden Irrigation Flow",
+        "disabled": false,
+        "info": ""
+    },
+  {
+    "id": "947030cc.8a64d",
+    "type": "api-call-service",
+    "z": "7b2cdb53.8ac5e4",
+    "name": "Water on",
+    "server": "8c4c7e11.df75e",
+    "version": 1,
+    "service_domain": "switch",
+    "service": "turn_on",
+    "entityId": "switch.garden_water",
+    "data": "{\"entity_id\":\"switch.garden_water\"}",
+    "dataType": "json",
+    "mergecontext": "",
+    "output_location": "",
+    "output_location_type": "none",
+    "mustacheAltTags": false,
+    "x": 440,
+    "y": 140,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "17e6e6b5.085929",
+    "type": "api-call-service",
+    "z": "7b2cdb53.8ac5e4",
+    "name": "Water off",
+    "server": "8c4c7e11.df75e",
+    "version": "1",
+    "service_domain": "switch",
+    "service": "turn_off",
+    "entityId": "switch.garden_water",
+    "data": "{\"entity_id\":\"switch.garden_water\"}",
+    "dataType": "json",
+    "mergecontext": "",
+    "output_location": "",
+    "output_location_type": "none",
+    "mustacheAltTags": false,
+    "x": 440,
+    "y": 200,
+    "wires": [
+      []
+    ]
+  },
+    {
+        "id": "a5c46c4d.00338",
+        "type": "inject",
+        "z": "7b2cdb53.8ac5e4",
+        "name": "Garden irrigation on",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 06 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 140,
+        "wires": [
+            [
+                "947030cc.8a64d",
+                "b37222e6.0ff1d"
+            ]
+        ]
+    },
+    {
+        "id": "7f90759b.e5bc3c",
+        "type": "inject",
+        "z": "7b2cdb53.8ac5e4",
+        "name": "Garden irrigation off",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "10 06 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 200,
+        "wires": [
+            [
+                "17e6e6b5.085929",
+                "5c17b3d6.d7eecc"
+            ]
+        ]
+    },
+    {
+        "id": "61df1f77.b4f8",
+        "type": "inject",
+        "z": "7b2cdb53.8ac5e4",
+        "name": "Garden irrigation on",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 01 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 260,
+        "wires": [
+            [
+                "4f5f7a02.f1fc74",
+                "b37222e6.0ff1d"
+            ]
+        ]
+    },
+    {
+        "id": "914bff1e.77e99",
+        "type": "inject",
+        "z": "7b2cdb53.8ac5e4",
+        "name": "Garden irrigation off",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "15 01 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 320,
+        "wires": [
+            [
+                "4e8c977c.e19258",
+                "5c17b3d6.d7eecc"
+            ]
+        ]
+    },
+  {
+    "id": "4e8c977c.e19258",
+    "type": "api-call-service",
+    "z": "7b2cdb53.8ac5e4",
+    "name": "Water off",
+    "server": "8c4c7e11.df75e",
+    "version": "1",
+    "service_domain": "switch",
+    "service": "turn_off",
+    "entityId": "switch.garden_water",
+    "data": "{\"entity_id\":\"switch.garden_water\"}",
+    "dataType": "json",
+    "mergecontext": "",
+    "output_location": "",
+    "output_location_type": "none",
+    "mustacheAltTags": false,
+    "x": 440,
+    "y": 320,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "4f5f7a02.f1fc74",
+    "type": "api-call-service",
+    "z": "7b2cdb53.8ac5e4",
+    "name": "Water on",
+    "server": "8c4c7e11.df75e",
+    "version": "1",
+    "service_domain": "switch",
+    "service": "turn_on",
+    "entityId": "switch.garden_water",
+    "data": "{\"entity_id\":\"switch.garden_water\"}",
+    "dataType": "json",
+    "mergecontext": "",
+    "output_location": "",
+    "output_location_type": "none",
+    "mustacheAltTags": false,
+    "x": 440,
+    "y": 260,
+    "wires": [
+      []
+    ]
+  },
+    {
+        "id": "b37222e6.0ff1d",
+        "type": "stoptimer",
+        "z": "7b2cdb53.8ac5e4",
+        "duration": "30",
+        "units": "Second",
+        "payloadtype": "bool",
+        "payloadval": "true",
+        "name": "30 sec timer",
+        "x": 450,
+        "y": 400,
+        "wires": [
+            [
+                "47fc9f1.a15e86"
+            ],
+            []
+        ]
+    },
+  {
+    "id": "47fc9f1.a15e86",
+    "type": "api-current-state",
+    "z": "7b2cdb53.8ac5e4",
+    "name": "Water is off",
+    "server": "8c4c7e11.df75e",
+    "version": 1,
+    "outputs": 2,
+    "halt_if": "off",
+    "halt_if_type": "str",
+    "halt_if_compare": "is",
+    "override_topic": false,
+    "entity_id": "switch.garden_water",
+    "state_type": "str",
+    "state_location": "payload",
+    "override_payload": "msg",
+    "entity_location": "data",
+    "override_data": "msg",
+    "blockInputOverrides": false,
+    "x": 610,
+    "y": 400,
+    "wires": [
+      [
+        "757e5d9b.d58064"
+      ],
+      []
+    ]
+  },
+    {
+        "id": "5c17b3d6.d7eecc",
+        "type": "stoptimer",
+        "z": "7b2cdb53.8ac5e4",
+        "duration": "30",
+        "units": "Second",
+        "payloadtype": "bool",
+        "payloadval": "true",
+        "name": "30 sec timer",
+        "x": 450,
+        "y": 460,
+        "wires": [
+            [
+                "e4cccd79.646a2"
+            ],
+            []
+        ]
+    },
+  {
+    "id": "e4cccd79.646a2",
+    "type": "api-current-state",
+    "z": "7b2cdb53.8ac5e4",
+    "name": "Water is on",
+    "server": "8c4c7e11.df75e",
+    "version": 1,
+    "outputs": 2,
+    "halt_if": "on",
+    "halt_if_type": "str",
+    "halt_if_compare": "is",
+    "override_topic": false,
+    "entity_id": "switch.garden_water",
+    "state_type": "str",
+    "state_location": "payload",
+    "override_payload": "msg",
+    "entity_location": "data",
+    "override_data": "msg",
+    "blockInputOverrides": false,
+    "x": 610,
+    "y": 460,
+    "wires": [
+      [
+        "27dd6919.487546"
+      ],
+      []
+    ]
+  },
+    {
+        "id": "757e5d9b.d58064",
+        "type": "function",
+        "z": "7b2cdb53.8ac5e4",
+        "name": "Prepare IFTTT push notification",
+        "func": "msg.payload = {};\nmsg.payload.value1 = \"water irrigation did not trigger!\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 830,
+        "y": 400,
+        "wires": [
+            [
+                "bcb20b1c.4d9c08",
+                "3132536e.fcb09c"
+            ]
+        ]
+    },
+    {
+        "id": "27dd6919.487546",
+        "type": "function",
+        "z": "7b2cdb53.8ac5e4",
+        "name": "Prepare IFTTT push notification",
+        "func": "msg.payload = {};\nmsg.payload.value1 = \"water irrigation did not turn off!\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 830,
+        "y": 460,
+        "wires": [
+            [
+                "bcb20b1c.4d9c08",
+                "3132536e.fcb09c"
+            ]
+        ]
+    },
+    {
+        "id": "d8454c90.f71b2",
+        "type": "inject",
+        "z": "7b2cdb53.8ac5e4",
+        "name": "Manual irrigation",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "30 20 * * 1,3,5,0",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 600,
+        "wires": [
+            [
+                "58988357.bbd06c"
+            ]
+        ]
+    },
+    {
+        "id": "3cc2bf4d.fc76f",
+        "type": "function",
+        "z": "7b2cdb53.8ac5e4",
+        "name": "Prepare IFTTT push notification for Juliet",
+        "func": "msg.payload = {};\nmsg.payload.value1 = \"Riega la jardinera!\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 600,
+        "y": 600,
+        "wires": [
+            [
+                "4d992f1.8f806d"
+            ]
+        ]
+    },
+    {
+        "id": "4d992f1.8f806d",
+        "type": "ifttt out",
+        "z": "7b2cdb53.8ac5e4",
+        "eventName": "HassInfoNotification",
+        "key": "14e9b48f.e2551b",
+        "x": 880,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "58988357.bbd06c",
+        "type": "api-current-state",
+        "z": "7b2cdb53.8ac5e4",
+        "name": "On vacation?",
+        "server": "8c4c7e11.df75e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.is_on_holiday",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 330,
+        "y": 600,
+        "wires": [
+            [],
+            [
+                "3cc2bf4d.fc76f"
+            ]
+        ]
+    },
+    {
+        "id": "bcb20b1c.4d9c08",
+        "type": "ifttt out",
+        "z": "7b2cdb53.8ac5e4",
+        "eventName": "HassAlertNotification",
+        "key": "2bf9f3ec.d709dc",
+        "x": 1100,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "3132536e.fcb09c",
+        "type": "ifttt out",
+        "z": "7b2cdb53.8ac5e4",
+        "eventName": "HassAlertNotification",
+        "key": "d986d0a9.7dbde",
+        "x": 1100,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "8c4c7e11.df75e",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant"
+    },
+    {
+        "id": "14e9b48f.e2551b",
+        "type": "ifttt-key",
+        "z": ""
+    },
+    {
+        "id": "2bf9f3ec.d709dc",
+        "type": "ifttt-key",
+        "z": ""
+    },
+    {
+        "id": "d986d0a9.7dbde",
+        "type": "ifttt-key",
+        "z": ""
+    }
+]

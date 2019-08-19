@@ -1,0 +1,85 @@
+[
+    {
+        "id": "a0bf5f42.a4971",
+        "type": "tab",
+        "label": "Office Air Flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "60de794f.8fe088",
+        "type": "inject",
+        "z": "a0bf5f42.a4971",
+        "name": "Noon",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 00 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "74fa6aa.c822594"
+            ]
+        ]
+    },
+    {
+        "id": "74fa6aa.c822594",
+        "type": "api-current-state",
+        "z": "a0bf5f42.a4971",
+        "name": "Office Air is On",
+        "server": "8c4c7e11.df75e",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "climate.office_air_machine",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "a0db2505.e46478"
+            ],
+            []
+        ]
+    },
+  {
+    "id": "a0db2505.e46478",
+    "type": "api-call-service",
+    "z": "a0bf5f42.a4971",
+    "name": "Office Air Turn off ",
+    "server": "8c4c7e11.df75e",
+    "version": 1,
+    "service_domain": "climate",
+    "service": "turn_off",
+    "entityId": "climate.office_air_machine",
+    "data": "{\"entity_id\":\"climate.office_air_machine\"}",
+    "dataType": "json",
+    "mergecontext": "",
+    "output_location": "",
+    "output_location_type": "none",
+    "mustacheAltTags": false,
+    "x": 590,
+    "y": 100,
+    "wires": [
+      []
+    ]
+  },
+    {
+        "id": "8c4c7e11.df75e",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant"
+    }
+]
